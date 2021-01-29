@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if employee_type == 'Администратор' %}
+        <h1>Admin worker</h1><br>
+    {% elif employee_type == 'Уборщик' %}
+        <h1>Clean Worker</h1><br>
+    {% endif %}
+    <h3>{{ employee_id }}</h3>
+    <h3>{{ employee_name }}</h3>
+    {% for elem in customers %}
+        {{ elem }}
+    <br>
+    {% endfor %}
+
+{% endblock %}

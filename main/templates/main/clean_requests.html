@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if employee_type == 'Администратор' or employee_type == 'Уборщик' %}
+    <h1>Список запросов на уборку</h1><br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+                {% if employee_type == 'Администратор' %}
+                <a class="btn btn-primary" href="{% url 'main:new_clean_request' %}">Добавить</a>
+                {% endif %}
+                <br>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8"><br><br>
+                <div class="list-group list-scroll">
+                    {% for clean_request in clean_requests %}
+                        <a href="{% url 'main:change_clean_request' clean_request.id_clean_request %}"
+                           class="list-group-item list-group-item-action">
+                            Дата запроса: {{ clean_request.clean_request_date }}<br>
+                            Апартаменты: {{ clean_request.id_apartment }}<br>
+                            Уборщик: {{ clean_request.id_clean_worker }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock %}

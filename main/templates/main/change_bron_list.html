@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Бронирование</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="save-bron-list" class="btn btn-secondary">Сохранить</button>
+        {% if not new %}
+        <button type="submit" name="close-bron-list" class="btn btn-secondary">Отменить</button>
+        {% endif %}
+
+    </form>
+
+{% endblock %}

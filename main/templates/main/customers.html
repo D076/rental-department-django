@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if employee_type == 'Администратор' %}
+    <h1>Список клиентов</h1><br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+                <a class="btn btn-primary" href="{% url 'main:new_customer' %}">Добавить клиента</a>
+                <br>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8"><br><br>
+                <div class="list-group list-scroll">
+                    {% for customer in customers %}
+                        <a href="{% url 'main:change_customer' customer.id_customer %}"
+                           class="list-group-item list-group-item-action">
+                            {{ customer.customer_name }}<br>
+                            Телефон: {{ customer.customer_phone }}<br>
+                            Пасспортные данные: {{ customer.customer_pasport }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock %}

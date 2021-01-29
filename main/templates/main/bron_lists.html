@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if employee_type == 'Администратор' %}
+    <h1>Список бронирований</h1><br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+                <a class="btn btn-primary" href="{% url 'main:new_bron_list' %}">Добавить</a>
+                <br>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8"><br><br>
+                <div class="list-group list-scroll">
+                    {% for bron_list in bron_lists %}
+                        <a href="{% url 'main:change_bron_list' bron_list.id_bron_list %}"
+                           class="list-group-item list-group-item-action">
+                            №: {{ bron_list.bron_number }}<br>
+                            Клиент: {{ bron_list.id_customer }}<br>
+                            Апартаменты: {{ bron_list.id_apartment }}<br>
+                            Администратор: {{ bron_list.id_admin_worker }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if employee_type == 'Администратор' %}
+    <h1>Документы о проживании</h1><br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1">
+                <a class="btn btn-primary" href="{% url 'main:new_resid_doc' %}">Добавить</a>
+                <br>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8"><br><br>
+                <div class="list-group list-scroll">
+                    {% for resid_doc in resid_docs %}
+                        <a href="{% url 'main:change_resid_doc' resid_doc.id_doc %}"
+                           class="list-group-item list-group-item-action">
+                            Дата заселения: {{ resid_doc.doc_date_start }}<br>
+                            Дата выселения: {{ resid_doc.doc_date_end }}<br>
+                            Клиент: {{ resid_doc.id_customer }}<br>
+                            Апартаменты: {{ resid_doc.id_apartment }}<br>
+                            Цена: {{ resid_doc.doc_price }}<br>
+                            Администратор: {{ resid_doc.id_admin_worker }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+
+{% endblock %}
